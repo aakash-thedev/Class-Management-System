@@ -2,6 +2,45 @@ const Teacher = require('../models/teacher');
 const Student = require('../models/student');
 const Class = require('../models/class');
 
+module.exports.getAllClasses = async function(req, res) {
+
+    try{
+
+        const teachersId = req.params.id;
+
+        // find the teacher is in Database
+        // return all his/her classes
+
+        let teacher = await Teacher.findById(teachersId).populate('classes');
+
+        if(!teacher){
+            return res.status(404).json({
+                message: "Teacher not found"
+            });
+        }
+
+        const classes = teacher.classes;
+
+        return res.status(200).json({
+
+            message: "All the user",
+            data: {
+                classes: classes
+            }
+
+        });
+    }
+
+    catch(err){
+
+        console.log(err);
+
+        return res.status(500).json({
+            message: "Internal Server Error"
+        });
+    }
+}
+
 module.exports.createClass = async function(req, res) {
 
     try{
