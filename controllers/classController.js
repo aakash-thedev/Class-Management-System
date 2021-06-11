@@ -216,3 +216,146 @@ module.exports.updateClass = async function(req, res) {
         });
     }
 }
+
+
+// --------------- MANAGE STUDENTS IN THE CLASSES ----------------- //
+
+// --------------- add student to the class ----------------------- //
+
+module.exports.addStudent = async function(req, res) {
+
+    try{
+
+    
+        // we will get two things from query parameter
+
+        // 1 - Student id we want to add 
+        // 2 - In which class we want to add the above student
+
+        const studentId = req.query.studentId;
+        const classId = req.query.classId;
+
+        // first find student in the database
+        let student = await Student.findById(studentId).populate('classesEnrolled');
+
+        if(!student){
+            return res.status(404).json({
+                message: "Student not found"
+            });
+        }
+
+        let currentClass = await Class.findById(classId).populate('studentsEnrolled');
+
+        if(!currentClass){
+            return res.status(404).json({
+                message: "Class not found"
+            });
+        }
+
+        // if we found both
+        if(student && currentClass) {
+
+            // then add the student in currentClass's studentEnrolled array
+            // && add the currentClass in student's classesEnrolled array
+
+            currentClass.studentsEnrolled.push(student._id);
+
+            currentClass.save();
+
+            student.classesEnrolled.push(currentClass._id);
+
+            student.save();
+
+            return res.status(200).json({
+                message: "Student Added"
+            });
+        }
+    }
+
+    catch(err){
+
+        console.log(err);
+        return res.status(500).json({
+            message: "Internal Server Error"
+        });
+    }
+}
+
+// ----------------- delete student ---------------------- //
+
+module.exports.deleteStudent = async function(req, res) {
+
+    try{
+        // we will get two things from query parameter
+
+        // 1 - Student id we want to add 
+        // 2 - In which class we want to add the above student
+
+        const studentId = req.query.studentId;
+        const classId = req.query.classId;
+
+        // first find student in the database
+        let student = await Student.findById(studentId).populate('classesEnrolled');
+
+        if(!student){
+            return res.status(404).json({
+                message: "Student not found"
+            });
+        }
+
+        let currentClass = await Class.findById(classId).populate('studentsEnrolled');
+
+        if(!currentClass){
+            return res.status(404).json({
+                message: "Class not found"
+            });
+        }
+
+        // if we found both
+        if(student && currentClass) {
+
+            // then add the student in currentClass's studentEnrolled array
+            // && add the currentClass in student's classesEnrolled array
+
+            var studentIndex = -1;
+
+            for(let i=0; i<currentClass.studentsEnrolled.length; i++){
+
+                if(currentClass.studentsEnrolled[i].id == student.id){
+                    studentIndex = i;
+                    break;
+                }
+            }
+
+            currentClass.studentsEnrolled.splice(studentIndex, 1);
+
+            currentClass.save();
+
+            var classIndex = -1;
+
+            for(let j=0; j<student.classesEnrolled.length; j++){
+
+                if(student.classesEnrolled[i].id == classId){
+                    classIndex = j;
+                    break;
+                }
+            }
+
+            student.classesEnrolled.splice(classIndex, 1);
+
+            student.save();
+
+            return res.status(200).json({
+                message: "Student Deleted Successfully"
+            });
+        }
+    }
+
+    catch(err){
+
+        console.log(err);
+        return res.status(500).json({
+            message: "Internal Server Error"
+        });
+    }
+}

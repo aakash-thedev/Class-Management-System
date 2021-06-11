@@ -158,6 +158,9 @@ module.exports.loginStudent = async function(req, res){
         return res.status(200).json({
             message: "User Signed In",
             data: {
+                id: student._id,
+                name: student.name,
+                email: student.email,
                 jwtToken: jwt.sign(student.toJSON(), 'classmanagementsystem', {expiresIn: '1000000'})
             }
         })

@@ -21,4 +21,11 @@ router.get('/deleteClass/:id', passportTeacher.authenticate('jwt', {session: fal
 // update the class information [ for now i am just taking class name !! ]
 router.get('/updateClass/:id', passportTeacher.authenticate('jwt', {session: false}), classController.updateClass);
 
+
+
+// ----------------------- CRUD endpoints for teachers to manage students joining in their classes ----------------------- //
+
+// that extra slash is for query parameter
+router.post('/addStudent/', classController.addStudent);
+
 module.exports = router;
