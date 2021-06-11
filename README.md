@@ -42,7 +42,7 @@ Teacher can create classes, delete classes, add students in it, delete students 
 * Teacher's id will be given via string parameter
 * pass the jwt webtoken of teacher in bearer token header to authorize the user
 
-## Teacher's can get a list of all the classrooms he made -
+## Teacher's can get a list of all the classrooms they made -
 
 #### http://localhost:9000/api/v1/class/all/:id
 * Teacher's id will be given via string parameter
@@ -56,3 +56,13 @@ Teacher can create classes, delete classes, add students in it, delete students 
 
 #### http://localhost:9000/api/v1/class/updateClass/:id
 * Class's id will be given via string parameter
+
+## Teacher's can add a student in a class
+
+#### http://localhost:9000/api/v1/class/addStudent/
+* Class's id in which student is to be added & student id (which student to be added ) will be given via query parameters
+
+## Teacher's can delete a student from a class
+
+#### http://localhost:9000/api/v1/class/deleteStudent/
+* Class's id in which student is to be added & student id (which student to be added ) will be given via query parameters
