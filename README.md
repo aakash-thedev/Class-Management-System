@@ -14,12 +14,12 @@ Teacher can create classes, delete classes, add students in it, delete students 
 
 # API's for every actions
 
-## To register a teacher
+## To Register a teacher
 
 #### http://localhost:9000/api/v1/register/teacher
 * Teacher's name, email & password will be given via body [ You can easily find it on Postman ]
 
-## To register a student 
+## To Register a student 
 
 #### http://localhost:9000/api/v1/register/student
 * Student's name, email & password will be given via body
@@ -57,6 +57,11 @@ Teacher can create classes, delete classes, add students in it, delete students 
 #### http://localhost:9000/api/v1/class/updateClass/:id
 * Class's id will be given via string parameter
 
+## Teacher's can get all the students in their class
+
+#### http://localhost:9000/api/v1/class/getStudents/:id
+* Class's id (student's from which class) will be given via query parameters.
+
 ## Teacher's can add a student in a class
 
 #### http://localhost:9000/api/v1/class/addStudent/
@@ -73,5 +78,5 @@ Teacher can create classes, delete classes, add students in it, delete students 
 * Students id will be given via string parameters
 
 
-## Thank You so much , any suggestions and feedbacks are most welcome.
-#### I've made this project as a assignment from HomeJam.
+### Thank You so much , any suggestions and feedbacks are most welcome.
+##### I've made this project as a assignment from HomeJam.
