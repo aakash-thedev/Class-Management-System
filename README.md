@@ -14,12 +14,12 @@ Teacher can create classes, delete classes, add students in it, delete students 
 
 # API's for every actions
 
-## To Register a teacher
+## To Register a Teacher
 
 #### http://localhost:9000/api/v1/register/teacher
 * Teacher's name, email & password will be given via body [ You can easily find it on Postman ]
 
-## To Register a student 
+## To Register a Student 
 
 #### http://localhost:9000/api/v1/register/student
 * Student's name, email & password will be given via body
@@ -38,43 +38,43 @@ Teacher can create classes, delete classes, add students in it, delete students 
 
 ## Teacher's can create a classroom via api - 
 
-#### http://localhost:9000/api/v1/class/createClass/:id
+#### http://localhost:9000/api/v1/class/createClass/<teacher's id goes here without triangular bracket>
 * Teacher's id will be given via string parameter
 * pass the jwt webtoken of teacher in bearer token header to authorize the user
 
 ## Teacher's can get a list of all the classrooms they made -
 
-#### http://localhost:9000/api/v1/class/all/:id
+#### http://localhost:9000/api/v1/class/all/<teacher's id goes here without triangular bracket>
 * Teacher's id will be given via string parameter
 
 ## Teacher's can delete a class
 
-#### http://localhost:9000/api/v1/class/deleteClass/:id
+#### http://localhost:9000/api/v1/class/deleteClass/<class's id goes here>
 * Class's id will be given via string parameter
 
 ## Teacher's can update a class's data
 
-#### http://localhost:9000/api/v1/class/updateClass/:id
+#### http://localhost:9000/api/v1/class/updateClass/<class's id goes here>
 * Class's id will be given via string parameter
 
 ## Teacher's can get all the students in their class
 
-#### http://localhost:9000/api/v1/class/getStudents/:id
-* Class's id (student's from which class) will be given via query parameters.
+#### http://localhost:9000/api/v1/class/getStudents/<class's id goes here>
+* Class's id (student's from which class) will be given via string parameters.
 
 ## Teacher's can add a student in a class
 
-#### http://localhost:9000/api/v1/class/addStudent/
+#### http://localhost:9000/api/v1/class/addStudent/?studentId=<student id>&classId=<class id>
 * Class's id in which student is to be added & student id (which student to be added ) will be given via query parameters
 
 ## Teacher's can delete a student from a class
 
-#### http://localhost:9000/api/v1/class/deleteStudent/
+#### http://localhost:9000/api/v1/class/deleteStudent/?studentId=<student id>&classId=<class id>
 * Class's id in which student is to be added & student id (which student to be added ) will be given via query parameters
 
 ## Students can see their enrolled classes
 
-#### http://localhost:9000/api/v1/student/classes_enrolled/:id
+#### http://localhost:9000/api/v1/student/classes_enrolled/<student's id goes here>
 * Students id will be given via string parameters
 
 
