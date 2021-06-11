@@ -66,3 +66,12 @@ Teacher can create classes, delete classes, add students in it, delete students 
 
 #### http://localhost:9000/api/v1/class/deleteStudent/
 * Class's id in which student is to be added & student id (which student to be added ) will be given via query parameters
+
+## Students can see their enrolled classes
+
+#### http://localhost:9000/api/v1/student/classes_enrolled/:id
+* Students id will be given via string parameters
+
+
+## Thank You so much , any suggestions and feedbacks are most welcome.
+#### I've made this project as a assignment from HomeJam.
