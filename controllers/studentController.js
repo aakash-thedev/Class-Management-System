@@ -11,10 +11,8 @@ module.exports.classesEnrolled = async function(req, res) {
         let classesEnrolled = student.classesEnrolled;
 
         return res.status(200).json({
-            message: `${student.name} is enrolled in these classes`,
-            data: {
-                classesEnrolled: classesEnrolled
-            }
+            message: `Student is enrolled in these classes`,
+            classesEnrolled: classesEnrolled
         });
     }
     catch(err){
