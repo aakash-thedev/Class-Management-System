@@ -4,6 +4,10 @@ const passportTeacher = require('../../../config/passport_jwt_teachers');
 
 const classController = require('../../../controllers/classController');
 
+// ######### NOTE - Only that user could perform these CRUD operations who has JWT bearer token which you will get when you sign in ########## //
+
+// --------- Proper authorization is implemented ----------- //
+
 // get all the classes of particular teacher
 router.get('/all/:id', classController.getAllClasses);
 
@@ -12,9 +16,9 @@ router.get('/all/:id', classController.getAllClasses);
 router.get('/createClass/:id', passportTeacher.authenticate('jwt', {session: false}), classController.createClass);
 
 // delete a particular class
-router.get('/deleteClass/:id', classController.deleteClass);
+router.get('/deleteClass/:id', passportTeacher.authenticate('jwt', {session: false}), classController.deleteClass);
 
 // update the class information [ for now i am just taking class name !! ]
-router.get('/updateClass/:id', classController.updateClass);
+router.get('/updateClass/:id', passportTeacher.authenticate('jwt', {session: false}), classController.updateClass);
 
 module.exports = router;
