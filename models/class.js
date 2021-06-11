@@ -8,7 +8,8 @@ const classSchema = new mongoose.Schema({
     },
 
     classTeacher: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Teacher'
     },
 
     studentsEnrolled: [

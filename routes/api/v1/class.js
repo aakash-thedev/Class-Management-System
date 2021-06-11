@@ -8,5 +8,6 @@ const classController = require('../../../controllers/classController');
 // only then u will able to create a class
 
 router.get('/createClass/:id', passportTeacher.authenticate('jwt', {session: false}), classController.createClass);
+router.get('/deleteClass/:id', classController.deleteClass);
 
 module.exports = router;
