@@ -25,7 +25,12 @@ router.get('/updateClass/:id', passportTeacher.authenticate('jwt', {session: fal
 
 // ----------------------- CRUD endpoints for teachers to manage students joining in their classes ----------------------- //
 
-// that extra slash is for query parameter
+// the extra slash is for query parameter
+
+router.get('/getStudents/:id', classController.getStudent);
+
 router.post('/addStudent/', classController.addStudent);
+
+router.get('/deleteStudent/', classController.deleteStudent);
 
 module.exports = router;

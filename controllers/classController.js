@@ -220,6 +220,33 @@ module.exports.updateClass = async function(req, res) {
 
 // --------------- MANAGE STUDENTS IN THE CLASSES ----------------- //
 
+// ----------------- get all the students from a class ------------------- //
+
+module.exports.getStudent = async function(req, res) {
+
+    try{
+        // we will get id of which class we want to list students of.
+        const classId = req.params.id;
+
+        let currentClass = Class.findById(classId).populate('studentsEnrolled');
+
+        let studentEnrolled = currentClass.studentEnrolled;
+
+        return res.status(200).json({
+            message: 'List Of Students',
+            data: {
+                students: studentEnrolled
+            }
+        });
+    }
+    catch(err){
+        console.log(err);
+        return res.status(500).json({
+            message: "Internal Server Error"
+        });
+    }
+}
+
 // --------------- add student to the class ----------------------- //
 
 module.exports.addStudent = async function(req, res) {
@@ -281,7 +308,7 @@ module.exports.addStudent = async function(req, res) {
     }
 }
 
-// ----------------- delete student ---------------------- //
+// ----------------- delete student from the class ---------------------- //
 
 module.exports.deleteStudent = async function(req, res) {
 
@@ -358,4 +385,15 @@ module.exports.deleteStudent = async function(req, res) {
             message: "Internal Server Error"
         });
     }
+}
+
+// ----------------- update student in the class ---------------------- //
+
+module.exports.updateStudent = async function(req, res) {
+    
+    // I can update a particular student with any value coming from req 
+    // right now it'll not make any sense but further if marks or anything will be added in student schema
+    // then a teacher updating student will make sense.
+
+    // right now i am just doing whats in the assignment's requirement
 }
