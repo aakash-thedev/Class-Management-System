@@ -8,7 +8,7 @@ const classSchema = new mongoose.Schema({
     },
 
     classTeacher: {
-        type: mongoose.Schema.Types.ObjectId
+        type: String
     },
 
     studentsEnrolled: [
@@ -22,6 +22,6 @@ const classSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const Teacher = mongoose.model('Teacher', classSchema);
+const Class = mongoose.model('Class', classSchema);
 
-module.exports = Teacher;
+module.exports = Class;
