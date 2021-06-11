@@ -14,4 +14,7 @@ router.get('/createClass/:id', passportTeacher.authenticate('jwt', {session: fal
 // delete a particular class
 router.get('/deleteClass/:id', classController.deleteClass);
 
+// update the class information [ for now i am just taking class name !! ]
+router.get('/updateClass/:id', classController.updateClass);
+
 module.exports = router;

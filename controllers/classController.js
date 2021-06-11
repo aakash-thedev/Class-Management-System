@@ -193,3 +193,26 @@ module.exports.deleteClass = async function(req, res) {
 
     // ----------------- whoaahhhhh !! that was a lot of logic and code ----------------------------- //
 }
+
+module.exports.updateClass = async function(req, res) {
+
+    try{
+        const classId = req.params.id;
+
+        let updatedClass = Class.findByIdAndUpdate(classId, { name: req.body.className });
+
+        updatedClass.save();
+
+        return res.status(200).json({
+            message: "Class updated successfully",
+            newClass: updatedClass
+        });
+    }
+    catch(err){
+
+        console.log("err", err);
+        return res.status(500).json({
+            message: "Internal Server Error"
+        });
+    }
+}
